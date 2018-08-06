@@ -25,3 +25,11 @@ body, a:link, a:visited, a:active{
   border-radius:10px;
   position:absolute;
 }
+.jake-dancer {
+  height: 150px;
+  position: absolute;
+}
+.hank-dancer {
+  height: 140px;
+  position: absolute;
+}
