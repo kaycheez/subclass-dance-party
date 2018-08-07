@@ -43,4 +43,12 @@ $(document).ready(function() {
     });
   });
 
+  $('body').on('mouseover', 'img', function(event){
+    $(this).addClass('animated');        
+  });
+   $('body').on('webkitAnimationEnd mozAnimationEnd animationend', 'img', function(){
+     $(this).removeClass("animated"); 
+   });
 });
+  
+
