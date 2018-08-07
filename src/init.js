@@ -43,6 +43,15 @@ $(document).ready(function() {
     });
   });
 
+  $('#random-dance').on('click', function(event) {
+    var maxTop = $('body').height();
+    var maxLeft = $('body').width();
+    window.dancers.forEach(function(dancer, index) {
+      dancer.isRandomDance = !dancer.isRandomDance; 
+      dancer.randomDance.call(dancer, [maxTop, maxLeft]);
+    });
+  });
+
   $('body').on('mouseover', 'img', function(event){
     $(this).addClass('animated');        
   });
