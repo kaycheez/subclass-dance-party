@@ -1,9 +1,6 @@
 // Creates and returns a new dancer object that can step
 var Dancer = function(top, left, timeBetweenSteps) {
-
   this.timeBetweenSteps = timeBetweenSteps;
-
-  this.step(this.timeBetweenSteps);
 };
 
 Dancer.prototype.step = function() {
@@ -16,4 +13,10 @@ Dancer.prototype.setPosition = function(top, left) {
     left: left
   };
   this.$node.css(styleSettings);
+};
+
+Dancer.prototype.move = function(toLoc) {
+  var toX = toLoc[0];
+  var toY = toLoc[1];
+  this.$node.animate({ top: toX, left: toY });
 };

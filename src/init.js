@@ -20,12 +20,27 @@ $(document).ready(function() {
     // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
     // make a dancer with a random position
-
+    var top = $('body').height() * Math.random();
+    var left = $('body').width() * Math.random();
     var dancer = new dancerMakerFunction(
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
+      top < 32 ? 32 : top,
+      left,
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+    window.dancers.push(dancer);
   });
+
+  $('#line-dance').on('click', function(event) {
+    var top = $('body').height() / 2;
+    var left = $('body').width() / window.dancers.length;
+    window.dancers.forEach(function(dancer, index) {
+      if (dancer.$node.hasClass('jake-dancer')) {
+        dancer.move([top + 59, left * index]);
+      } else {
+        dancer.move([top, left * index]);
+      }
+    });
+  });
+
 });
