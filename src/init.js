@@ -35,6 +35,7 @@ $(document).ready(function() {
     var top = $('body').height() / 2;
     var left = $('body').width() / window.dancers.length;
     window.dancers.forEach(function(dancer, index) {
+      dancer.isRandomDance = false;
       if (dancer.$node.hasClass('jake-dancer')) {
         dancer.move([top + 59, left * index]);
       } else {

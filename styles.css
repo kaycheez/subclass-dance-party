@@ -5,6 +5,8 @@ body{
   margin: 0px;
   background-color:#444;
   font-size: 18px;
+  background-image: url('dance_floor.JPG');
+  background-size: 100%;
 }
 body, a:link, a:visited, a:active{
   color: lightblue;
@@ -19,6 +21,10 @@ body, a:link, a:visited, a:active{
 }
 .title{
   background-color: #777;
+}
+.animationButton {
+  padding:5px 12px;
+  float: left;
 }
 .dancer{
   border:10px solid red;
