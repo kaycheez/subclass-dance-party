@@ -1,6 +1,7 @@
 // Creates and returns a new dancer object that can step
 var Dancer = function(top, left, timeBetweenSteps) {
   this.isRandomDance = false;
+  this.isCircleDance = false;
   this.timeBetweenSteps = timeBetweenSteps;
 };
 
@@ -22,14 +23,18 @@ Dancer.prototype.move = function(toLoc) {
   this.$node.animate({ top: toX, left: toY });
 };
 
-Dancer.prototype.makeNewPosition = function () {
-  var h = $(window).height() - 50;
-  var w = $(window).width() - 50;
-
-  var nh = Math.floor(Math.random() * h);
-  var nw = Math.floor(Math.random() * w);
-
-  return [nh,nw];    
+Dancer.prototype.circleDance = function(center, time = 0) {
+  if (!this.isCircleDance) {
+    return;
+  }
+  time += 0.05;
+  var radius = 200;
+  console.log(center[0]);
+  var xcenter = center[0];
+  var ycenter = center[1];
+  var newLeft = Math.floor(xcenter + (radius * Math.cos(time)));
+  var newTop = Math.floor(ycenter + (radius * Math.sin(time)));
+  this.$node.animate({ top: newTop, left: newLeft, }, 2, this.circleDance.bind(this, center, time));
 }
 
 Dancer.prototype.randomDance = function () {
@@ -43,6 +48,16 @@ Dancer.prototype.randomDance = function () {
 
   this.$node.animate({ top: newq[0], left: newq[1] }, speed, this.randomDance.bind(this));
 };
+
+Dancer.prototype.makeNewPosition = function () {
+  var h = $(window).height() - 50;
+  var w = $(window).width() - 50;
+
+  var nh = Math.floor(Math.random() * h);
+  var nw = Math.floor(Math.random() * w);
+
+  return [nh,nw];    
+}
 
 Dancer.prototype.calcSpeed = function (prev, next) {
   var x = Math.abs(prev[1] - next[1]);

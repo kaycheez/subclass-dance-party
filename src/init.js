@@ -35,6 +35,7 @@ $(document).ready(function() {
     var top = $('body').height() / 2;
     var left = $('body').width() / window.dancers.length;
     window.dancers.forEach(function(dancer, index) {
+      dancer.isCircleDance = false;
       dancer.isRandomDance = false;
       if (dancer.$node.hasClass('jake-dancer')) {
         dancer.move([top + 59, left * index]);
@@ -48,9 +49,24 @@ $(document).ready(function() {
     var maxTop = $('body').height();
     var maxLeft = $('body').width();
     window.dancers.forEach(function(dancer, index) {
+      dancer.isCircleDance = false;
       dancer.isRandomDance = !dancer.isRandomDance; 
       dancer.randomDance.call(dancer, [maxTop, maxLeft]);
     });
+  });
+
+  $('#dance-battle').on('click', function(event) {
+    if (window.dancers.length < 2) {
+      return;
+    }
+    var top = $('body').height() / 2;
+    var center = $('body').width() / 2;
+    var dancerOne = window.dancers[0];
+    var dancerTwo = window.dancers[1];
+    dancerTwo.isCircleDance = !dancerTwo.isCircleDance;
+    dancerOne.move([top, center]);
+    dancerTwo.circleDance([center, top]);
+
   });
 
   $('body').on('mouseover', 'img', function(event){
